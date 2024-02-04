@@ -1,19 +1,19 @@
-class Field:        # Klasa bazowa, która ma jedynie pole 'value'
+class Field:       
     def __init__(self, value=None):
         self.value=value
 
     def set_value(self, value):
         self.value = value
 
-class Name(Field):  # Klasa dziedzicząca, przechowuje imię i nazwsko
+class Name(Field):  
     pass
 
-class Phone(Field):  # Klasa dziedzicząca, przechowuje numer telefonu
+class Phone(Field):  
     pass
 
-class Record:       # reprezentuje wpis w książce adresowej
+class Record:       
     def __init__(self, name):
-        self.name = Name(name)   # 'name' który jest obiektem klasy Name
+        self.name = Name(name)  
         self.phones = []
 
     def add_phone(self, phone):
@@ -34,20 +34,20 @@ class Record:       # reprezentuje wpis w książce adresowej
 
 from collections import UserDict
 
-class AddressBook(UserDict):  # 'AddressBook' reprezentuje samą ksiażkę adresową, dziedziczy z 'UserDict' co ułatwia zarządzanie danymi.
+class AddressBook(UserDict):  
     def add_record(self, record):
         key = record.name.value
         self.data[key] = record
 
-# Tworzymy nowy wpis
+
 person = Record("Jan Kowalski")
 person.add_phone("123-456-789")
 
-# Tworzymy książkę adresową
+
 address_book = AddressBook()
 address_book.add_record(person)
 
-# Pobieramy rekord z książki adresowej
+
 jan_kowalski = address_book["Jan Kowalski"]
 
 # Edytujemy numer telefonu
